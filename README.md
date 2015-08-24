@@ -13,20 +13,16 @@ Getting started with the sample is easy. It is configured to run out of the box 
 
 To use this sample you will need a Windows Azure Active Directory Tenant. If you're not sure what a tenant is or how you would get one, read [What is an Azure AD tenant](http://technet.microsoft.com/library/jj573650.aspx)? or [Sign up for Azure as an organization](http://azure.microsoft.com/en-us/documentation/articles/sign-up-organization/). These docs should get you started on your way to using Windows Azure AD.
 
-### Step 2: Register your Web API with your Windows Azure AD Tenant
-
-After you get your Windows Azure AD tenant, add this sample app to your tenant so you can use it to protect your API endpoints. If you need help with this step, see: [Register the REST API Service Windows Azure Active Directory](https://github.com/AzureADSamples/WebAPI-Nodejs/wiki/Setup-Windows-Azure-AD)
-
-### Step 3: Download node.js for your platform
+### Step 2: Download node.js for your platform
 To successfully use this sample, you need a working installation of Node.js.
 
-### Step 4: Download the Sample application and modules
+### Step 3: Download the Sample application and modules
 
 Next, clone the sample repo and install the NPM.
 
 From your shell or command line:
 
-* `$ git clone git@github.com:AzureADSamples/Convergence-OpenIDConnect-Nodejs.git`
+* `$ git clone git@github.com:AzureADQuickStarts/AppModelv2-OpenIDConnect-Nodejs.git`
 * `$ npm install`
 * `$cd passport-azure-ad`
 * `$ npm install`
