@@ -31,6 +31,9 @@ var passport = require('passport');
 var util = require('util');
 var bunyan = require('bunyan');
 var config = require('./config');
+
+// Start QuickStart here
+
 var OIDCStrategy = require('./lib/passport-azure-ad/index').OIDCStrategy;
 
 var log = bunyan.createLogger({
@@ -38,7 +41,8 @@ var log = bunyan.createLogger({
 });
 
 
-// Passport session setup.
+// Passport session setup. (Section 2)
+
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
 //   this will be as simple as storing the user ID when serializing, and finding
@@ -66,7 +70,8 @@ var findByEmail = function(email, fn) {
   return fn(null, null);
 };
 
-// Use the OIDCStrategy within Passport.
+// Use the OIDCStrategy within Passport. (Section 2) 
+// 
 //   Strategies in passport require a `validate` function, which accept
 //   credentials (in this case, an OpenID identifier), and invoke a callback
 //   with a user object.
@@ -100,11 +105,11 @@ passport.use(new OIDCStrategy({
 ));
 
 
-
+// configure Express (Section 2)
 
 var app = express();
 
-// configure Express
+
 app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -121,6 +126,7 @@ app.configure(function() {
   app.use(express.static(__dirname + '/../../public'));
 });
 
+//Routes (Section 4)
 
 app.get('/', function(req, res){
   res.render('index', { user: req.user });
@@ -136,6 +142,8 @@ app.get('/login',
     log.info('Login was called in the Sample');
     res.redirect('/');
 });
+
+// Our POST routes (Section 3)
 
 // POST /auth/openid
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -170,7 +178,8 @@ app.get('/logout', function(req, res){
 app.listen(3000);
 
 
-// Simple route middleware to ensure user is authenticated.
+// Simple route middleware to ensure user is authenticated. (Section 4)
+
 //   Use this route middleware on any resource that needs to be protected.  If
 //   the request is authenticated (typically via a persistent login session),
 //   the request will proceed.  Otherwise, the user will be redirected to the
