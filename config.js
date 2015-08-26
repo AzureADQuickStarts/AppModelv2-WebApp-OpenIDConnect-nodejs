@@ -4,7 +4,6 @@
  	returnURL: 'http://localhost:3000/auth/openid/return',
  	identityMetadata: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration', // For using Microsoft you should never need to change this.
  	realm: 'http://localhost:3000',
- 	issuer: 'https://sts.windows.net/<your app ID>',
  	clientID: '<Your app ID>',
  	clientSecret: '<Your secret>'
  };
