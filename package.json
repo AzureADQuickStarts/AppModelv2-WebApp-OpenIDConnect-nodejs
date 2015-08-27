@@ -10,6 +10,9 @@
         "bunyan": "*",
         "assert-plus": "*",
         "passport": "*",
-        "webfinger": "*"
+        "webfinger": "*",
+        "body-parser": "*",
+        "express-session": "*",
+        "cookie-parser": "*"
     }
 }
