@@ -82,9 +82,12 @@ passport.use(new OIDCStrategy({
     clientSecret: config.creds.clientSecret,
     oidcIssuer: config.creds.issuer,
     identityMetadata: config.creds.identityMetadata,
-    skipUserProfile: true // doesn't fetch user profile
+    responseType: config.creds.responseType,
+    responseMode: config.creds.responseMode,
+    skipUserProfile: config.creds.skipUserProfile
+    //scope: config.creds.scope
   },
-  function(iss, sub, email, claims, profile, accessToken, refreshToken, done) {
+  function(iss, sub, claims, profile, done) {
     log.info('We received claims of: ', claims);
     log.info('Example: Email address we received was: ', claims.preferred_username);
     // asynchronous verification, for effect...
@@ -152,7 +155,7 @@ app.get('/login',
 //   provider will redirect the user back to this application at
 //   /auth/openid/return
 app.post('/auth/openid',
-  passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
+  passport.authenticate('azuread-openidconnect', { FailureRedirect: '/login' }),
   function(req, res) {
     log.info('Authenitcation was called in the Sample');
     res.redirect('/');
@@ -166,7 +169,19 @@ app.post('/auth/openid',
 app.get('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('We received a return from AzureAD.');
+    
+    res.redirect('/');
+  });
+
+// POST /auth/openid/return
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+app.post('/auth/openid/return',
+  passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
+  function(req, res) {
+    
     res.redirect('/');
   });
 
