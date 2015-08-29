@@ -4,5 +4,9 @@
 <% } else { %>
 <p>displayName: <%= user.name %></p>
 <p>Profile ID: <%= user.sub %></p>
+<p></p>
+<p>Full Claimes</p>
+<%- JSON.stringify(user) %>
+<p></p>
 <a href="/logout">Log Out</a>
 <% } %>

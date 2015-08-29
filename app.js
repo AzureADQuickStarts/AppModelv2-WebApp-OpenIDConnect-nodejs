@@ -48,7 +48,7 @@ var log = bunyan.createLogger({
 //   this will be as simple as storing the user ID when serializing, and finding
 //   the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
-  done(null, user.preferred_username);
+  done(null, user.preferred_username || user.upn);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -63,7 +63,7 @@ var users = [];
 var findByEmail = function(email, fn) {
   for (var i = 0, len = users.length; i < len; i++) {
     var user = users[i];
-    if (user.preferred_username === email) {
+    if (user.preferred_username || user.upn === email) {
       return fn(null, user);
     }
   }
@@ -87,9 +87,9 @@ passport.use(new OIDCStrategy({
     skipUserProfile: config.creds.skipUserProfile
     //scope: config.creds.scope
   },
-  function(iss, sub, claims, profile, done) {
+  function(iss, sub, profile, claims, accessToken, refreshToken, params, done) {
     log.info('We received claims of: ', claims);
-    log.info('Example: Email address we received was: ', claims.preferred_username);
+    log.info('Example: Email address we received was: ', claims.preferred_username || claims.upn);
     // asynchronous verification, for effect...
     process.nextTick(function () {
       findByEmail(claims.preferred_username, function(err, user) {

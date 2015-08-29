@@ -2,9 +2,9 @@
   //
  exports.creds = {
  	returnURL: 'http://localhost:3000/auth/openid/return',
- 	identityMetadata: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration', // For using Microsoft you should never need to change this.
- 	clientID: '519ea014-04c9-4839-9b4a-8a604aff827a',
- 	clientSecret: 'HxAfPj1zZu7QS5Wydu89oRu',
+ 	identityMetadata: 'https://login.microsoftonline.com/common/.well-known/openid-configuration', // For using Microsoft you should never need to change this.
+ 	clientID: '6450da98-4793-4dbd-9945-56a26737e229',
+ 	clientSecret: 'vPSgl3vyVR8w8Ge/A8hYbhIm8eZEcAmC4JCIB5jeoI8=',
  	skipUserProfile: true, // for OpenID only flows this should be set to true
  	responseType: 'id_token', // for login only flows
  	responseMode: 'form_post', // As per the OAuth 2.0 standard.
