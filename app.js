@@ -34,7 +34,7 @@ var config = require('./config');
 
 // Start QuickStart here
 
-var OIDCStrategy = require('./lib/passport-azure-ad/index').OIDCStrategy;
+var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 
 var log = bunyan.createLogger({
     name: 'Microsoft OIDC Example Web Application'
@@ -48,7 +48,7 @@ var log = bunyan.createLogger({
 //   this will be as simple as storing the user ID when serializing, and finding
 //   the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
-  done(null, user.preferred_username || user.upn);
+  done(null, user.email);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -63,7 +63,8 @@ var users = [];
 var findByEmail = function(email, fn) {
   for (var i = 0, len = users.length; i < len; i++) {
     var user = users[i];
-    if (user.preferred_username || user.upn === email) {
+    log.info('we are using user: ', user);
+    if (user.email === email) {
       return fn(null, user);
     }
   }
@@ -87,19 +88,18 @@ passport.use(new OIDCStrategy({
     skipUserProfile: config.creds.skipUserProfile
     //scope: config.creds.scope
   },
-  function(iss, sub, profile, claims, accessToken, refreshToken, params, done) {
-    log.info('We received claims of: ', claims);
-    log.info('Example: Email address we received was: ', claims.preferred_username || claims.upn);
+  function(iss, sub, profile, accessToken, refreshToken, done) {
+    log.info('Example: Email address we received was: ', profile.email);
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      findByEmail(claims.preferred_username, function(err, user) {
+      findByEmail(profile.email, function(err, user) {
         if (err) {
           return done(err);
         }
         if (!user) {
           // "Auto-registration"
-          users.push(claims);
-          return done(null, claims);
+          users.push(profile);
+          return done(null, profile);
         }
         return done(null, user);
       });
@@ -147,6 +147,19 @@ app.get('/login',
 });
 
 // Our POST routes (Section 3)
+
+// POST /auth/openid
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in OpenID authentication will involve redirecting
+//   the user to their OpenID provider.  After authenticating, the OpenID
+//   provider will redirect the user back to this application at
+//   /auth/openid/return
+app.post('/auth/openid',
+  passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
+  function(req, res) {
+    log.info('Authenitcation was called in the Sample');
+    res.redirect('/');
+  });
 
 // GET /auth/openid/return
 //   Use passport.authenticate() as route middleware to authenticate the

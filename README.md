@@ -24,11 +24,7 @@ From your shell or command line:
 
 * `$ git clone git@github.com:AzureADQuickStarts/AppModelv2-OpenIDConnect-Nodejs.git`
 * `$ npm install`
-* `$cd passport-azure-ad`
-* `$ npm install`
-*
 
-YOU NEED TO RUN NPM INSTALL ON THE passport-azure-ad directory as well as the npm has yet to be updated for convergence.
 
 ### Step 5: Configure your server using config.js
 
