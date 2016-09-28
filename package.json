@@ -1,16 +1,20 @@
 {
-    "name": "passport-azure-ad-login-oidc",
-    "version": "0.0.1",
-    "dependencies": {
-        "express": "3.x",
-        "ejs": ">= 0.0.0",
-        "ejs-locals": ">= 0.0.0",
-        "bunyan": "*",
-        "assert-plus": "*",
-        "passport": "*",
-        "body-parser": "*",
-        "express-session": "*",
-        "cookie-parser": "*",
-        "passport-azure-ad": "*"
-    }
+  "name": "passport-azure-ad-login-oidc",
+  "version": "0.0.1",
+  "dependencies": {
+    "assert-plus": "*",
+    "body-parser": "^1.15.2",
+    "bunyan": "*",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": ">= 0.0.0",
+    "ejs-locals": ">= 0.0.0",
+    "express": "3.x",
+    "express-session": "^1.14.1",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.6.2",
+    "passport": "*",
+    "passport-azure-ad": "^3.0.0",
+    "restify": "*"
+  }
 }
