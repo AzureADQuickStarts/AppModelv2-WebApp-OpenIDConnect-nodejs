@@ -27,7 +27,15 @@ From your shell or command line:
 
 ### Step 4: Configure your server
 
-Provide the parameters listed in config.js as instructed.
+* Provide the parameters in `exports.creds` in config.js as instructed.
+
+* Update `exports.destroySessionUrl` in config.js, if you want to use a different `post_logout_redirect_uri`.
+
+* Set `exports.useMongoDBSessionStore` in config.js to false, if you want to use the
+default session store for `express-session`. Note that the default session store is
+not suitable for production, you must use mongoDB or other [compatible session stores](https://github.com/expressjs/session#compatible-session-stores).
+
+* Update `exports.databaseUri`, if you want to use mongoDB session store and a different database uri.
 
 **NOTE:** Session middleware is required to use OIDCStrategy. We keep nonce, state, etc in session for validation purpose; we also keep `user` in session for a persistent login session.
 
@@ -37,12 +45,15 @@ If you don't want a persistent login session (you want the user to enter usernam
 passport.authenticate('azuread-openidconnect', {session: false});
 ```
 
-In this app we use `express-session` for session middleware. For the session store required by `express-session`, you can choose `memoryStore` (the default session store provided by `express-session`), or `mongoDB`, using the `useMongoDBSessionStore` option in config.js. Note that `memoryStore` is for development purpose only, for production you should use `mongoDB` or other [compatible session stores](https://github.com/expressjs/session#compatible-session-stores).
-
-
 ### Step 5: Run the application
 
-If you are using mongoDB session store in app, you have to install mongoDB and start the service first. Then you can run:
+* Start mongoDB service.
+
+If you are using mongoDB session store in this app, you have to install mongoDB and start the service first. If you are using the default session store, you can skip this step.
+
+* Run the app.
+
+Use the following command in terminal.
 
 * `$ node app.js`
 

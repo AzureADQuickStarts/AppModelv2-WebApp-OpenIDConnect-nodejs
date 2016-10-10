@@ -36,8 +36,10 @@ exports.creds = {
   // Required to set to true if the `verify` function has 'req' as the first parameter
   passReqToCallback: false,
 
-  // Optional. The additional scope we want besides 'openid', for example: ['email', 'profile'].
-  scope: null,
+  // Optional. The additional scope we want besides 'openid'.
+  // (1) 'offline_access': if you want to receive refresh_token
+  // (2) 'https://graph.microsoft.com/mail.read': if you want to receive access_token
+  scope: ['offline_access', 'https://graph.microsoft.com/mail.read'],
 
   // Optional, 'error', 'warn' or 'info'
   loggingLevel: 'info',

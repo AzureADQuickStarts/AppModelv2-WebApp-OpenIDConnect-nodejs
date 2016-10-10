@@ -14,7 +14,6 @@
     "method-override": "^2.3.6",
     "mongoose": "^4.6.2",
     "passport": "*",
-    "passport-azure-ad": "^3.0.0",
-    "restify": "*"
+    "passport-azure-ad": "^3.0.0"
   }
 }
