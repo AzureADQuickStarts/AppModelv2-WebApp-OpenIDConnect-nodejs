@@ -154,8 +154,11 @@ if (config.useMongoDBSessionStore) {
   mongoose.connect(config.databaseUri);
   app.use(express.session({
     secret: 'secret',
-    maxAge: new Date(Date.now() + 36000000), // 1 hour
-    store: new MongoStore({mongooseConnection: mongoose.connection})
+    cookie: {maxAge: config.mongoDBSessionMaxAge * 1000},
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      clear_interval: config.mongoDBSessionMaxAge
+    })
   }));
 } else {
   app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));

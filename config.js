@@ -58,3 +58,6 @@ exports.useMongoDBSessionStore = true;
 
 // If you want to use mongoDB, provide the uri here for the database.
 exports.databaseUri = 'mongodb://localhost/OIDCStrategy';
+
+// How long you want to keep session in mongoDB.
+exports.mongoDBSessionMaxAge = 24 * 60 * 60;  // 1 day (unit is second)

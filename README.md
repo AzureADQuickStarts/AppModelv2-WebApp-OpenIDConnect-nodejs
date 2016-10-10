@@ -37,6 +37,9 @@ not suitable for production, you must use mongoDB or other [compatible session s
 
 * Update `exports.databaseUri`, if you want to use mongoDB session store and a different database uri.
 
+* Update `exports.mongoDBSessionMaxAge`. Here you can specify how long you want
+to keep a session in mongoDB. The unit is second(s).
+
 **NOTE:** Session middleware is required to use OIDCStrategy. We keep nonce, state, etc in session for validation purpose; we also keep `user` in session for a persistent login session.
 
 If you don't want a persistent login session (you want the user to enter username and password etc for every request to access protected resources), you can achieve it by using the following code. 
