@@ -50,20 +50,20 @@ passport.authenticate('azuread-openidconnect', {session: false});
 
 ### Step 5: Run the application
 
-* Start mongoDB service.
+* Start mongoDB service. If you are using mongoDB session store in this app, you have to install mongoDB and start the service first. If you are using the default session store, you can skip this step.
 
-If you are using mongoDB session store in this app, you have to install mongoDB and start the service first. If you are using the default session store, you can skip this step.
+* Run the app. Use the following command in terminal.
 
-* Run the app.
-
-Use the following command in terminal.
-
-* `$ node app.js`
+```
+$ node app.js
+```
 
 **Is the server output hard to understand?:** We use `bunyan` for logging in this sample. The console won't make much sense to you unless you also install bunyan and run the server like above but pipe it through the bunyan binary:
 
-* `$ npm install -g bunyan`
-* `$ node app.js | bunyan`
+```
+$ npm install -g bunyan
+$ node app.js | bunyan
+```
 
 ### You're done!
 

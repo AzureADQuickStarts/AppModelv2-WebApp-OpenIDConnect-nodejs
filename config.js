@@ -10,8 +10,9 @@ exports.creds = {
   // Required, the client ID of your app in AAD  
   clientID: '<your_client_id>',
 
-  // Required, must be 'code', 'code id_token', 'id_token code' or 'id_token' 
-  responseType: 'id_token', 
+  // Required, must be 'code', 'code id_token', 'id_token code' or 'id_token'
+  // If you want to get access_token, you must use 'code', 'code id_token' or 'id_token code' 
+  responseType: 'code id_token', 
 
   // Required
   responseMode: 'form_post', 
@@ -37,8 +38,8 @@ exports.creds = {
   passReqToCallback: false,
 
   // Optional. The additional scope we want besides 'openid'.
-  // (1) 'offline_access': if you want to receive refresh_token
-  // (2) 'https://graph.microsoft.com/mail.read': if you want to receive access_token
+  // (1) if you want to receive refresh_token, use 'offline_access' scope
+  // (2) if you want to get access_token for graph api, use the graph api url like 'https://graph.microsoft.com/mail.read'
   scope: ['offline_access', 'https://graph.microsoft.com/mail.read'],
 
   // Optional, 'error', 'warn' or 'info'
