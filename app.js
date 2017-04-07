@@ -115,6 +115,10 @@ passport.use(new OIDCStrategy({
     scope: config.creds.scope,
     loggingLevel: config.creds.loggingLevel,
     nonceLifetime: config.creds.nonceLifetime,
+    nonceMaxAmount: config.creds.nonceMaxAmount,
+    useCookieInsteadOfSession: config.creds.useCookieInsteadOfSession,
+    cookieEncryptionKeys: config.creds.cookieEncryptionKeys,
+    clockSkew: config.creds.clockSkew,
   },
   function(iss, sub, profile, accessToken, refreshToken, done) {
     if (!profile.oid) {
@@ -199,8 +203,16 @@ app.get('/account', ensureAuthenticated, function(req, res) {
 });
 
 app.get('/login',
-  // if you want to use custom state, use the `customState` option
-  passport.authenticate('azuread-openidconnect', { customState: 'my_state', failureRedirect: '/' }),
+  function(req, res, next) {
+    passport.authenticate('azuread-openidconnect', 
+      { 
+        response: res,                      // required
+        resourceURL: config.resourceURL,    // optional. Provide a value if you want to specify the resource.
+        customState: 'my_state',            // optional. Provide a value if you want to provide custom state value.
+        failureRedirect: '/' 
+      }
+    )(req, res, next);
+  },
   function(req, res) {
     log.info('Login was called in the Sample');
     res.redirect('/');
@@ -211,7 +223,14 @@ app.get('/login',
 // query (such as authorization code). If authentication fails, user will be
 // redirected to '/' (home page); otherwise, it passes to the next middleware.
 app.get('/auth/openid/return',
-  passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+  function(req, res, next) {
+    passport.authenticate('azuread-openidconnect', 
+      { 
+        response: res,                      // required
+        failureRedirect: '/'  
+      }
+    )(req, res, next);
+  },
   function(req, res) {
     log.info('We received a return from AzureAD.');
     res.redirect('/');
@@ -222,7 +241,14 @@ app.get('/auth/openid/return',
 // body (such as authorization code). If authentication fails, user will be
 // redirected to '/' (home page); otherwise, it passes to the next middleware.
 app.post('/auth/openid/return',
-  passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
+  function(req, res, next) {
+    passport.authenticate('azuread-openidconnect', 
+      { 
+        response: res,                      // required
+        failureRedirect: '/'  
+      }
+    )(req, res, next);
+  },
   function(req, res) {
     log.info('We received a return from AzureAD.');
     res.redirect('/');
