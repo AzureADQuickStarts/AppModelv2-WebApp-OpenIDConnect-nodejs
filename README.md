@@ -1,7 +1,6 @@
 # Azure Active Directory OIDC Node.js Web Sample
 
-| [Getting Started](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-devquickstarts-node-web)| [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc) |
-
+| [Getting Started](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-devquickstarts-node-web) | [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc)
 | --- | --- | --- | --- | --- |
 
 This sample demonstrates how to set up OpenId Connect authentication in a web application built using Node.js with Express. The sample is designed to run on any platform.
