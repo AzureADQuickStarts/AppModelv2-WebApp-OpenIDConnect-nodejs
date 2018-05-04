@@ -1,7 +1,7 @@
 # Azure Active Directory OIDC Node.js Web Sample
 
-| [Getting Started](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-devquickstarts-node-web) | [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc)
-| --- | --- | --- | --- | --- |
+| [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc)
+| --- | --- | --- | --- |
 
 This sample demonstrates how to set up OpenId Connect authentication in a web application built using Node.js with Express. The sample is designed to run on any platform.
 
@@ -20,7 +20,7 @@ Create a new app at [apps.dev.microsoft.com](https://apps.dev.microsoft.com), or
 - Copy down the **Application Id** assigned to your app, you'll need it soon.
 - Add the **Web** platform for your app.
 - Enter the correct **Redirect URI**. The redirect uri indicates to Azure AD where authentication responses should be directed - the default for this sample is `http://localhost:3000/auth/openid/return'`.
-- Add a new **Application secret** via the "Generate new password", and save the result in a temporary location - you'll need it in the next step.
+- Add a new **Application secret** by clicking the **Generate new password** button. This value will not be displayed again, so save the result in a temporary location as you'll need it in the next step.
 
 
 ## Download the sample application and modules
@@ -30,6 +30,8 @@ Next, clone the sample repo and install the NPM modules.
 From your shell or command line:
 
 * `$ git clone git@github.com:AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git`
+
+From the project root directory, run the command:
 
 * `$ npm install`   
 
@@ -42,11 +44,13 @@ Provide the parameters in `exports.creds` in config.js as instructed.
 * Update `exports.clientID` with the Application Id noted from app registration.
 * Update `exports.clientSecret` with the Application secret noted from app registration.
 * Update `exports.redirectUrl` with the Redirect URI noted from app registration.
-* Update `exports.destroySessionUrl` in config.js, if you want to use a different `post_logout_redirect_uri`.
 
 **Optional configuration for production apps:**
 
-* Set `exports.useMongoDBSessionStore` in config.js to false, if you want to use the default session store for `express-session`. Note that the default session store is not suitable for production, you must use mongoDB or other [compatible session stores](https://github.com/expressjs/session#compatible-session-stores).
+* Update `exports.destroySessionUrl` in config.js, if you want to use a different `post_logout_redirect_uri`.
+
+* Set `exports.useMongoDBSessionStore` in config.js to true, if you want to use use mongoDB or other [compatible session stores](https://github.com/expressjs/session#compatible-session-stores).
+The default session store in this sample is `express-session`. Note that the default session store is not suitable for production.
 
 * Update `exports.databaseUri`, if you want to use mongoDB session store and a different database URI.
 

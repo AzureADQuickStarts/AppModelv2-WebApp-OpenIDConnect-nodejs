@@ -72,10 +72,10 @@ exports.creds = {
 // The url you need to go to destroy the session with AAD
 exports.destroySessionUrl = 'https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=http://localhost:3000';
 
-// If you want to use the mongoDB session store for session middleware; otherwise we will use the default
+// If you want to use the mongoDB session store for session middleware, set to true; otherwise we will use the default
 // session store provided by express-session.
 // Note that the default session store is designed for development purpose only.
-exports.useMongoDBSessionStore = true;
+exports.useMongoDBSessionStore = false;
 
 // If you want to use mongoDB, provide the uri here for the database.
 exports.databaseUri = 'mongodb://localhost/OIDCStrategy';
