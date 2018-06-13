@@ -31,6 +31,11 @@ From your shell or command line:
 
 * `$ git clone git@github.com:AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git`
 
+or
+
+* `$ git clone https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git`
+
+
 From the project root directory, run the command:
 
 * `$ npm install`   
