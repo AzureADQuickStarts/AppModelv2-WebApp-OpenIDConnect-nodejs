@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+  - nodejs 
+products:
+  - azure
+  - azure-active-directory    
+description: "This sample demonstrates how to set up OpenId Connect authentication in a web application built using Node.js with Express."
+---
+
 # Azure Active Directory OIDC Node.js Web Sample
 
 | [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc)
@@ -21,7 +31,7 @@ To run this sample you will need the following:
     - Select your profile from the menu on the top right corner of the page, and then **Switch directory**.
     - Change your session to the Azure AD tenant where you want to create your application.
 
-1. Navigate to [Azure Active Directory > App registrations (Preview)](https://go.microsoft.com/fwlink/?linkid=2083908) to register your app.
+1. Navigate to [Azure Active Directory > App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) to register your app.
 
 1. Select **New registration.**
 
