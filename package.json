@@ -12,7 +12,7 @@
     "express": "3.x",
     "express-session": "^1.14.1",
     "method-override": "^2.3.6",
-    "mongoose": "^4.6.2",
+    "mongoose": "^5.7.7",
     "passport": "*",
     "passport-azure-ad": "^3.0.12"
   }
