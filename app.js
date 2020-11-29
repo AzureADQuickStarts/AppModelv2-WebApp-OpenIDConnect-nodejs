@@ -36,6 +36,7 @@ var passport = require('passport');
 var util = require('util');
 var bunyan = require('bunyan');
 var config = require('./config');
+var morgan = require('morgan')
 
 // set up database for express session
 var MongoStore = require('connect-mongo')(expressSession);
@@ -149,7 +150,7 @@ var app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.logger());
+app.use(morgan());
 app.use(methodOverride());
 app.use(cookieParser());
 
@@ -174,7 +175,6 @@ app.use(bodyParser.urlencoded({ extended : true }));
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(app.router);
 app.use(express.static(__dirname + '/../../public'));
 
 //-----------------------------------------------------------------------------
