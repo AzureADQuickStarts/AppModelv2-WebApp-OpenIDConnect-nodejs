@@ -10,6 +10,10 @@ exports.creds = {
   // Required, the client ID of your app in AAD  
   clientID: '<your_client_id>',
 
+  // Required if `responseType` is 'code', 'id_token code' or 'code id_token'. 
+  // If app key contains '\', replace it with '\\'.
+  clientSecret: '<your_client_secret>', 
+
   // Required, must be 'code', 'code id_token', 'id_token code' or 'id_token'
   // If you want to get access_token, you must use 'code', 'code id_token' or 'id_token code' 
   responseType: 'code id_token', 
@@ -22,10 +26,6 @@ exports.creds = {
 
   // Required if we use http for redirectUrl
   allowHttpForRedirectUrl: true,
-
-  // Required if `responseType` is 'code', 'id_token code' or 'code id_token'. 
-  // If app key contains '\', replace it with '\\'.
-  clientSecret: '<your_client_secret>', 
 
   // Required to set to false if you don't want to validate issuer
   validateIssuer: false,

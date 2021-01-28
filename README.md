@@ -1,16 +1,17 @@
 ---
 page_type: sample
 languages:
-  - nodejs 
+  - javascript 
 products:
-  - azure
+  - nodejs
+  - passport-azure-ad
   - azure-active-directory    
 description: "This sample demonstrates how to set up OpenId Connect authentication in a web application built using Node.js with Express."
 ---
 
-# Azure Active Directory OIDC Node.js Web Sample
+# Azure Active Directory OIDC Node.js web app sample
 
-| [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc)
+| [Library](https://github.com/AzureAD/passport-azure-ad) | [Docs](https://aka.ms/aadv2) | [Support](README.md#community-help-and-support) | [Protocol](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oidc)
 | --- | --- | --- | --- |
 
 This sample demonstrates how to set up OpenId Connect authentication in a web application built using Node.js with Express. The sample is designed to run on any platform.
@@ -21,7 +22,7 @@ To run this sample you will need the following:
 
 * Install Node.js from http://nodejs.org/
 
-* Either a [Microsoft account](https://www.outlook.com) or [Office 365 for business account](https://msdn.microsoft.com/en-us/office/office365/howto/setup-development-environment#bk_Office365Account)
+* Either a [Microsoft account](https://www.outlook.com) or [Office 365 for business account](https://msdn.microsoft.com/office/office365/howto/setup-development-environment#bk_Office365Account)
 
 ## Register the sample
 
@@ -47,9 +48,17 @@ To run this sample you will need the following:
 
 1. In the list of pages for the app, select **Authentication**.
     - In the **Redirect URIs** section, select **Web** in the combo-box and enter the following redirect URI:
-    `http://localhost:3000/auth/openid/return`
-    - In the **Advanced settings** section, set **Logout URL** to `http://localhost:3000`.
-    - In the **Advanced settings > Implicit grant** section, check **ID tokens** as this sample requires the [Implicit grant flow](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-implicit-grant-flow) to be enabled to sign-in the user.
+    `http://localhost:3000/auth/openid/return` (:warning:)
+    - In the **Advanced settings > Implicit grant and hybrid flows** section, check **ID tokens** as this sample requires the [hybrid flow](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-implicit-grant-flow) to be enabled to sign-in the user.
+    - Select **Save**.
+
+> :warning: In this tutorial sample, we use HTTP schemes as the application runs on locahost only. However, HTTP schemes are insecure and should not be used in production.
+
+1. In the list of pages for the app, select **Manifest**.
+    - Find the key `logoutUrl` and replace its value with `http://localhost:3000/logout` (:warning:)
+    - Select **Save**
+
+> :warning: In this tutorial sample, we use HTTP schemes as the application runs on locahost only. However, HTTP schemes are insecure and should not be used in production.
 
 1. Select **Save**.
 
@@ -59,7 +68,6 @@ To run this sample you will need the following:
     - When you click the **Add** button, the key value will be displayed. Copy the key value and save it in a safe location.
 
     You'll need this key later to configure the application. This key value will not be displayed again, nor retrievable by any other means, so record it as soon as it is visible from the Azure portal.
-
 
 ## Download the sample application and modules
 
@@ -73,10 +81,9 @@ or
 
 * `$ git clone https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-nodejs.git`
 
-
 From the project root directory, run the command:
 
-* `$ npm install`   
+* `$ npm install`
 
 
 ## Configure the application
@@ -105,16 +112,15 @@ The default session store in this sample is `express-session`. Note that the def
 
 * Run the app using the following command from your command line.
 
-```
-$ node app.js
+```console
+  node app.js
 ```
 
 **Is the server output hard to understand?:** We use `bunyan` for logging in this sample. The console won't make much sense to you unless you also install bunyan and run the server like above but pipe it through the bunyan binary:
 
-```
-$ npm install -g bunyan
-
-$ node app.js | bunyan
+```console
+  npm install -g bunyan
+  node app.js | bunyan
 ```
 
 ### You're done!
@@ -133,7 +139,7 @@ For issues with the passport-azure-ad library, please raise the issue on the lib
 
 If you'd like to contribute to this sample, please follow the [GitHub Fork and Pull request model](https://help.github.com/articles/fork-a-repo/).
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.   
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Security Library
 
@@ -141,7 +147,7 @@ This library controls how users sign-in and access services. We recommend you al
 
 ## Security Reporting
 
-If you find a security issue with our libraries or services please report it to [secure@microsoft.com](mailto:secure@microsoft.com) with as much detail as possible. Your submission may be eligible for a bounty through the [Microsoft Bounty](http://aka.ms/bugbounty) program. Please do not post security issues to GitHub Issues or any other public site. We will contact you shortly upon receiving the information. We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/en-us/security/dd252948) and subscribing to Security Advisory Alerts.
+If you find a security issue with our libraries or services please report it to [secure@microsoft.com](mailto:secure@microsoft.com) with as much detail as possible. Your submission may be eligible for a bounty through the [Microsoft Bounty](http://aka.ms/bugbounty) program. Please do not post security issues to GitHub Issues or any other public site. We will contact you shortly upon receiving the information. We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.
 
 Copyright (c) Microsoft Corporation.  All rights reserved. Licensed under the MIT License (the "License");
 

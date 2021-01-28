@@ -30,11 +30,11 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
-var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
-var util = require('util');
 var bunyan = require('bunyan');
+var morgan = require('morgan');
+
 var config = require('./config');
 
 // set up database for express session
@@ -149,7 +149,7 @@ var app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.logger());
+app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(cookieParser());
 
@@ -168,13 +168,12 @@ if (config.useMongoDBSessionStore) {
   app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));
 }
 
-app.use(bodyParser.urlencoded({ extended : true }));
+app.use(express.urlencoded({ extended : true }));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(app.router);
 app.use(express.static(__dirname + '/../../public'));
 
 //-----------------------------------------------------------------------------
@@ -199,6 +198,7 @@ app.get('/', function(req, res) {
 
 // '/account' is only available to logged in user
 app.get('/account', ensureAuthenticated, function(req, res) {
+  console.log(req.user);
   res.render('account', { user: req.user });
 });
 
@@ -226,7 +226,7 @@ app.get('/auth/openid/return',
   function(req, res, next) {
     passport.authenticate('azuread-openidconnect', 
       { 
-        response: res,                      // required
+        response: res,    // required
         failureRedirect: '/'  
       }
     )(req, res, next);
@@ -244,7 +244,7 @@ app.post('/auth/openid/return',
   function(req, res, next) {
     passport.authenticate('azuread-openidconnect', 
       { 
-        response: res,                      // required
+        response: res,    // required
         failureRedirect: '/'  
       }
     )(req, res, next);
