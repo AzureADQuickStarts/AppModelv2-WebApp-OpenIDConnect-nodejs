@@ -51,14 +51,11 @@ To run this sample you will need the following:
     `http://localhost:3000/auth/openid/return` (:warning:)
     - In the **Advanced settings > Implicit grant and hybrid flows** section, check **ID tokens** as this sample requires the [hybrid flow](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-implicit-grant-flow) to be enabled to sign-in the user.
     - Select **Save**.
-
-> :warning: In this tutorial sample, we use HTTP schemes as the application runs on locahost only. However, HTTP schemes are insecure and should not be used in production.
-
 1. In the list of pages for the app, select **Manifest**.
     - Find the key `logoutUrl` and replace its value with `http://localhost:3000/logout` (:warning:)
     - Select **Save**
 
-> :warning: In this tutorial sample, we use HTTP schemes as the application runs on locahost only. However, HTTP schemes are insecure and should not be used in production.
+> :warning: Except on localhost, HTTP schemes are considered insecure and should not be used. In production, you should use HTTPS instead. See for more: [Microsoft identity platform best practices and recommendations](https://docs.microsoft.com/azure/active-directory/develop/identity-platform-integration-checklist#security)
 
 1. Select **Save**.
 
