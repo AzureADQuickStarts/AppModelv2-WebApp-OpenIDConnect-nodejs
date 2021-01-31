@@ -2,8 +2,8 @@
 	<h2>Welcome! Please log in.</h2>
 	<a href="/login">Log In</a>
 <% } else { %>
-<p>UPN: <%= user._json.upn %></p>
-<p>Profile ID: <%= user.id %></p>
+<p>UPN: <%= user._json.preferred_username %></p>
+<p>Profile ID: <%= user._json.oid %></p>
 <p>Full Claims</p>
 <%- JSON.stringify(user) %>
 <p></p>
