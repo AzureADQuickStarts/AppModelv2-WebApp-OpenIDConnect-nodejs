@@ -156,7 +156,7 @@ app.use(cookieParser());
 // set up session middleware
 if (config.useMongoDBSessionStore) {
   mongoose.connect(config.databaseUri);
-  app.use(express.session({
+  app.use(expressSession({
     secret: 'secret',
     cookie: {maxAge: config.mongoDBSessionMaxAge * 1000},
     store: new MongoStore({
